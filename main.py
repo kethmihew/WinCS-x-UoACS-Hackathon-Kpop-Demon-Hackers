@@ -1,5 +1,9 @@
+# ---- IMPORTANT: To anyone wishing to add their page: Please follow the steps in the comments below. ----
+
 # main.py
 import tkinter as tk
+
+#STEP 1: IMPORT YOUR PAGE HERE. e.g. from FolderName.python_file import ClassName
 from Homepage.homepage import HomePage
 from Temporary.temp import TestPage
 from WorkTimer.work_timer import WorkTimer
@@ -16,18 +20,25 @@ class App(tk.Tk):
 
         self.frames = {}
 
-        # Register all pages
-        for PageClass in (HomePage, TestPage, WorkTimer):  # add more pages later
+        # STEP 2: INSERT ClassName OF YOUR PAGE. 
+        for PageClass in (HomePage, TestPage, WorkTimer): # ADD INSIDE OF BRACKETS HERE.
             frame = PageClass(parent=container, controller=self)
             self.frames[PageClass.__name__] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
         self.show_frame("HomePage")
 
-        #Main Menu Button
+        # Main Menu Button
         home_page = self.frames["HomePage"]
 
-        #Configuration and set-up of menu buttons
+        # STEP 3 (FINAL STEP): USE THIS TEMPLATE TO CONFIGURE THE RESPECTIVE BUTTON FROM homepage.py
+        # CHANGE 'example_page' to the name of the page button. You can find all the buttons in homepage.py
+        # CHANGE 'ClassName' WITH NAME OF CLASS
+        """
+            home_page.[example_page_button].config(
+            command=lambda: (home_page.toggle_menu(), self.show_frame("ClassName"))
+        )
+        """
         home_page.friends_page_button.config(
             command=lambda: (home_page.toggle_menu(), self.show_frame("TestPage"))
         )
